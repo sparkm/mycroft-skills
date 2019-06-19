@@ -72,40 +72,21 @@ class LaughSkill(MycroftSkill):
 
     def laugh(self):
         # dont laugh over a speech message
-        if is_speaking():
-            wait_while_speaking()
-
-        sound = random.choice(self.sounds[self.settings["gender"]])
-        if ".mp3" in sound:
-            self.p = play_mp3(sound)
-        elif ".ogg" in sound:
-            self.p = play_ogg(sound)
-        else:
-            self.p = play_wav(sound)
+	pass
 
     @intent_file_handler("Laugh.intent")
     def handle_laugh_intent(self, message):
-        self.laugh()
+	pass
 
     @intent_file_handler("RandomLaugh.intent")
     def handle_random_intent(self, message):
         # initiate random laughing
-        self.log.info("Laughing skill: Triggering random laughing")
-        self.random_laugh = True
-        self.handle_laugh_event(message)
+	pass
 
     @intent_handler(
         IntentBuilder('StopLaughing').require('Stop').require('Laugh'))
     def halt_laughing(self, message):
-        self.log.info("Laughing skill: Stopping")
-        # if in random laugh mode, cancel the scheduled event
-        if self.random_laugh:
-            self.log.info("Laughing skill: Stopping random laugh event")
-            self.random_laugh = False
-            self.cancel_scheduled_event('random_laugh')
-            self.speak_dialog("cancel")
-        else:
-            self.speak_dialog("cancel_fail")
+	pass
 
     def handle_laugh_event(self, message):
         # create a scheduled event to laugh at a random interval between 1
